@@ -1,0 +1,10 @@
+{
+  "plugins": {},
+  "filters": {
+    "comments": true
+  },
+  "rules": {
+    "preset-ja-spacing": true,
+    "preset-ja-technical-writing": true
+  }
+}
