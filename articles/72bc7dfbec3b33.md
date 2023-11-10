@@ -18,7 +18,7 @@ publication_name: "chot"
 NeoVimは自分好みにカスタマイズしていくエディタです。
 この記事ではVSCodeに飽きちゃった人やNeoVimを使ってみたいけど難しそうだなと思っている人に向けて[AstroNvim](https://astronvim.com/) を紹介します。
 
-AstroNvimとはオールインワンのNeovim環境でつかいやすい状態でセットアップされています。
+AstroNvimとはオールインワンのNeovim環境です。
 
 カスタマイズも簡単にできるため、NeoVim初心者にはとてもおすすめです。
 筆者もAstroNvimからNeoVimに入門しており、いまも使い続けています。
@@ -173,4 +173,4 @@ https://github.com/FukeKazki/astronvim3-user
 # おわりに
 
 AstroNvimを使ったNeoVimの入門方法について解説しました。
-自分だけのエディタを作って最高のNeoVimライフをお過ごしください！
+自分だけのエディタを作って最高のNeoVimライフをお過ごしください！。
