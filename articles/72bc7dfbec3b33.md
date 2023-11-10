@@ -18,10 +18,10 @@ publication_name: "chot"
 NeoVimは自分好みにカスタマイズしていくエディタです。
 この記事ではVSCodeに飽きちゃった人やNeoVimを使ってみたいけど難しそうだなと思っている人に向けて[AstroNvim](https://astronvim.com/) を紹介します。
 
-AstroNvim とはオールインワンの Neovim 環境でつかいやすい状態でセットアップされています。
+AstroNvimとはオールインワンのNeovim環境でつかいやすい状態でセットアップされています。
 
-カスタマイズも簡単にできるため、NeoVim 初心者にはとてもおすすめです。
-筆者も AstroNvim から NeoVim に入門しており、いまも使い続けています。
+カスタマイズも簡単にできるため、NeoVim初心者にはとてもおすすめです。
+筆者もAstroNvimからNeoVimに入門しており、いまも使い続けています。
 
 ![筆者の環境](https://storage.googleapis.com/zenn-user-upload/d99a294ecd91-20230603.png)
 
@@ -38,7 +38,7 @@ nvim
 
 ubuntuの場合は自分でNeovimをビルドするのが良いです。
 apt経由で入れると、バージョンが低い場合やLuaJITでビルドできていないことがあります。
-以下はubuntuコンテナ環境に AstroNvim を導入する手順です。
+以下はubuntuコンテナ環境にAstroNvimを導入する手順です。
 
 ```
 # Neovimのインストール (自前でビルドする)
@@ -64,7 +64,7 @@ exec $SHELL -l
 nvim
 ```
 
-以上の手順が完了すれば AstroNvim が起動します。
+以上の手順が完了すればAstroNvimが起動します。
 
 [![Image from Gyazo](https://i.gyazo.com/90aecb7e64df39122eaf8aae640ff2ca.png)](https://gyazo.com/90aecb7e64df39122eaf8aae640ff2ca)
 
@@ -77,7 +77,7 @@ AstroNvimの操作の大体は`<space>`キーが起点になっています。
 これは[NeoTree](https://github.com/nvim-neo-tree/neo-tree.nvim)というプラグインが動作しています。
 [![Image from Gyazo](https://i.gyazo.com/c56f7ec0d776530625f0eb14d1a65bf4.png)](https://gyazo.com/c56f7ec0d776530625f0eb14d1a65bf4)
 
-また `<space>ff` でファイル検索 (VSCode での cmd + P) や `<space>fw`でワード検索が可能です。
+また `<space>ff` でファイル検索 (VSCodeでのcmd + P) や `<space>fw`でワード検索が可能です。
 これは[Telescope](https://github.com/nvim-telescope/telescope.nvim) というファインダー機能を提供しているプラグインが動作しています。
 
 ![](https://storage.googleapis.com/zenn-user-upload/ce3896d1d556-20230602.gif)
@@ -86,9 +86,9 @@ AstroNvimの操作の大体は`<space>`キーが起点になっています。
 
 # 自分だけの AstroNvim にカスタマイズ
 
-AstroNvim のカスタマイズについて紹介します。
+AstroNvimのカスタマイズについて紹介します。
 
-https://github.com/AstroNvim/user_example の 「Create a new Repository」からリポジトリをフォークして自分用の設定ファイルを作成します。
+https://github.com/AstroNvim/user_example の「Create a new Repository」からリポジトリをフォークして自分用の設定ファイルを作成します。
 
 [![Image from Gyazo](https://i.gyazo.com/324b4b788858c641a088759dfbfc73ba.jpg)](https://gyazo.com/324b4b788858c641a088759dfbfc73ba)
 
@@ -105,11 +105,11 @@ git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim/lua/us
 
 言語ごとにプログラムの変換候補を表示するためにはLSPの導入が必要です。
 AstroNvimには[mason-lsp-config](https://github.com/williamboman/mason-lspconfig.nvim) というプラグインが導入されています。
-mason-lsp-config は language server, linter, formatter を統一して管理するためのプラグインです。
+mason-lsp-configはlanguage server, linter, formatterを統一して管理するためのプラグインです。
 
-`:Mason`でインストールしている LSP が確認できます。
+`:Mason`でインストールしているLSPが確認できます。
 
-例えば、TypeScript の LSP をインストールするときは`:MasonInstall typescript-language-server`でインストールできます。
+例えば、TypeScriptのLSPをインストールするときは`:MasonInstall typescript-language-server`でインストールできます。
 
 また `plugins/mason.lua`ファイルにあらかじめ書くことで自動インストールも可能です。
 
@@ -122,13 +122,13 @@ mason-lsp-config は language server, linter, formatter を統一して管理す
   },
 ```
 
-tailwindcss の LSP が動作している例
+tailwindcssのLSPが動作している例
 [![Image from Gyazo](https://i.gyazo.com/5c9b760146a0d6c04102838426fd73a9.png)](https://gyazo.com/5c9b760146a0d6c04102838426fd73a9)
 
 ## Git 操作
 
-筆者は Git 操作に [NeoGit](https://github.com/TimUntersberger/neogit) を使っています。
-NeoGit は AstroNvim には含まれていないので、自分でプラグインの追加をします。
+筆者はGit操作に [NeoGit](https://github.com/TimUntersberger/neogit) を使っています。
+NeoGitはAstroNvimには含まれていないので、自分でプラグインの追加をします。
 
 `plugins/user.lua`に以下を書くとプラグインを導入できます。
 
@@ -160,11 +160,11 @@ NeoGit は AstroNvim には含まれていないので、自分でプラグイ�
 
 # トラブルシューティング
 
-NeoVim 初心者のころは設定ファイルの書きかたや、プラグインのインストールなどでつまづくことがあります。
+NeoVim初心者のころは設定ファイルの書きかたや、プラグインのインストールなどでつまづくことがあります。
 
-AstroNvim は記事が少ないため、[公式ドキュメント](https://astronvim.com/)に頼ることが多いです。
+AstroNvimは記事が少ないため、[公式ドキュメント](https://astronvim.com/)に頼ることが多いです。
 
-また、copilot のサジェストや[grep.app](https://grep.app/)というプログラムの検索サービスを使って他人の設定ファイルを参考にすることが多いです。
+また、copilotのサジェストや[grep.app](https://grep.app/)というプログラムの検索サービスを使って他人の設定ファイルを参考にすることが多いです。
 
 参考に筆者の設定ファイルを載せておきます。
 
@@ -172,5 +172,5 @@ https://github.com/FukeKazki/astronvim3-user
 
 # おわりに
 
-AstroNvim を使った NeoVim の入門方法について解説しました。
-自分だけのエディタを作って最高の NeoVim ライフをお過ごしください！
+AstroNvimを使ったNeoVimの入門方法について解説しました。
+自分だけのエディタを作って最高のNeoVimライフをお過ごしください！
