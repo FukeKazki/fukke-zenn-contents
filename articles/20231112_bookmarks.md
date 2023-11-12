@@ -11,7 +11,7 @@ published: false
 # はじめに
 
 以下の図の構成でサイトのブックマークを管理できるツールを作成しました。
-![構成図](https://storage.googleapis.com/zenn-user-upload/d43b01cd98a1-20231112.jpg)
+![構成図](https://storage.googleapis.com/zenn-user-upload/66b4a4f2f036-20231112.jpg)
 
 # 構成の説明
 
