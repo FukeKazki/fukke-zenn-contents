@@ -1,0 +1,101 @@
+---
+title: "手軽なブックマーク管理ツールを作る"
+emoji: "🔖"
+type: "tech" # tech: 技術記事 / idea: アイデア
+topics: ["tridactyl", "peco"]
+published: false
+---
+
+[![Image from Gyazo](https://i.gyazo.com/74278032d1bdde1235e91508474c080b.gif)](https://gyazo.com/74278032d1bdde1235e91508474c080b)
+
+# はじめに
+
+以下の図の構成でサイトのブックマークを管理できるツールを作成しました。
+![構成図](https://storage.googleapis.com/zenn-user-upload/d43b01cd98a1-20231112.jpg)
+
+# 構成の説明
+
+構成図の説明をします。
+
+ブックマークのデータ保存にはSupabaseを使います。
+Supabaseは無料のRDBを提供しているサービスです。
+
+Supabseにarticlesテーブルを作成し、記事を登録します。
+記事のデータ構造は、以下のようにしました。
+![記事のデータ構造](https://storage.googleapis.com/zenn-user-upload/fc708c38a250-20231112.png)
+
+# ブックマークの登録
+
+筆者はブラウザにFirefoxを使っているため、Firefoxから簡単にブックマークを登録できるようにしました。
+[Tridactyl](https://github.com/tridactyl/tridactyl)はFirefox内でVim操作ができるようなるプラグインですが、さらに特定のキー入力で任意のプログラムを実行できるようにします。
+
+今回は`,r`キーの入力で現在閲覧しているサイトをブックマークに登録します。
+
+tridactylの設定で`,r`入力時に`bookmark.js`を実行するようにします。
+
+```text:tridactylrc
+" ブックマークに登録する
+command bookmark js -r js/bookmark.js
+bind ,r composite bookmark | fillcmdline_nofocus
+```
+
+`bookmark.js`を作成します。
+
+サイトのタイトルは`document.title`、URLは`location.href`で取得します。
+Supabaseへのポストは`fetch`関数で行います。
+
+```js:js/bookmark.js
+(async function () {
+  const SUPABASE_URL = "SUPABASE_URL";
+
+  const title = document.title;
+  const url = location.href;
+
+  await fetch(`${SUPABASE_URL}/rest/v1/articles`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: "API_KEY",
+    },
+    body: JSON.stringify({
+      title,
+      url,
+    }),
+  });
+
+  return `[${title}](${url})`;
+})();
+```
+
+[![Image from Gyazo](https://i.gyazo.com/60660da7264da8eea939104e8a64e4ce.gif)](https://gyazo.com/60660da7264da8eea939104e8a64e4ce)
+
+# ブックマークの取得
+
+`curl`でブックマークを取得し、`peco`で選択UIを作成し、`open`コマンドでブラウザが開くようにします。
+
+```bash:.zshrc
+function peco-select-bookmark() {
+  local bookmarks=$(curl -s 'SUPABASE_URL/rest/v1/articles' -H "apiKey: API_KEY" -H "Content-Type: application/json")
+  local bookmark=$(echo $bookmarks | jq -r '.[] | .title' | peco --query "$LBUFFER")
+  if [ -n "$bookmark" ]; then
+      local selected_bookmark=$(echo $bookmarks | jq -r ".[] | select(.title == \"${bookmark}\") | .url")
+      BUFFER="open ${selected_bookmark}"
+      zle accept-line
+  fi
+   zle clear-screen
+}
+zle -N peco-select-bookmark
+bindkey '^U' peco-select-bookmark
+```
+
+[![Image from Gyazo](https://i.gyazo.com/532928402d4b381900d2f46415f839ce.gif)](https://gyazo.com/532928402d4b381900d2f46415f839ce)
+
+# おわりに
+
+以上で手軽なブックマークツールが完成しました。
+データベースに保存できたことで端末間の同期もできます。また、TUIからの操作なので普段vim生活をしている筆者はとても使いやすく感じています。
+
+技術的には、今回はじめてSupabaseを利用しました。
+無料で使える点や簡単にCRUDできる点がとても便利でした。
+
+次は、ブックマークするときに記事のメモを登録できるようにしたいです🐱。
