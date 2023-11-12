@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "ラズパイピコでつくる電光掲示板"
 emoji: "😎"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: []
