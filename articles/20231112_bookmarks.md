@@ -6,23 +6,26 @@ topics: ["tridactyl", "peco"]
 published: false
 ---
 
-[![Image from Gyazo](https://i.gyazo.com/74278032d1bdde1235e91508474c080b.gif)](https://gyazo.com/74278032d1bdde1235e91508474c080b)
+![Image from Gyazo](https://i.gyazo.com/74278032d1bdde1235e91508474c080b.gif)
+_記事をブックマークしてターミナルから開く様子_
 
 # はじめに
 
 以下の図の構成でサイトのブックマークを管理できるツールを作成しました。
 ![構成図](https://storage.googleapis.com/zenn-user-upload/66b4a4f2f036-20231112.jpg)
+_構成図_
 
 # 構成の説明
 
 構成図の説明をします。
 
-ブックマークのデータ保存にはSupabaseを使います。
+ブックマークのデータ保存には[Supabase](https://supabase.com/)を使います。
 Supabaseは無料のRDBを提供しているサービスです。
 
 Supabseにarticlesテーブルを作成し、記事を登録します。
 記事のデータ構造は、以下のようにしました。
 ![記事のデータ構造](https://storage.googleapis.com/zenn-user-upload/fc708c38a250-20231112.png)
+_記事のデータ構造_
 
 # ブックマークの登録
 
@@ -67,7 +70,8 @@ Supabaseへのポストは`fetch`関数で行います。
 })();
 ```
 
-[![Image from Gyazo](https://i.gyazo.com/60660da7264da8eea939104e8a64e4ce.gif)](https://gyazo.com/60660da7264da8eea939104e8a64e4ce)
+![Image from Gyazo](https://i.gyazo.com/60660da7264da8eea939104e8a64e4ce.gif)
+_`,r`で記事がSupabaseに保存される様子_
 
 # ブックマークの取得
 
@@ -88,14 +92,15 @@ zle -N peco-select-bookmark
 bindkey '^U' peco-select-bookmark
 ```
 
-[![Image from Gyazo](https://i.gyazo.com/532928402d4b381900d2f46415f839ce.gif)](https://gyazo.com/532928402d4b381900d2f46415f839ce)
+![Image from Gyazo](https://i.gyazo.com/532928402d4b381900d2f46415f839ce.gif)
+_ターミナルでブックマーク一覧から記事を選択する様子_
 
 # おわりに
 
 以上で手軽なブックマークツールが完成しました。
 データベースに保存できたことで端末間の同期もできます。また、TUIからの操作なので普段vim生活をしている筆者はとても使いやすく感じています。
 
-技術的には、今回はじめてSupabaseを利用しました。
+技術的には、初めてSupabaseを利用しました。
 無料で使える点や簡単にCRUDできる点がとても便利でした。
 
 次は、ブックマークするときに記事のメモを登録できるようにしたいです🐱。
