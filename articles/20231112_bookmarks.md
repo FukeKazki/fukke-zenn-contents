@@ -4,6 +4,7 @@ emoji: "🔖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["tridactyl", "peco", "Supabase"]
 published: false
+publication_name: "chot"
 ---
 
 ![Image from Gyazo](https://i.gyazo.com/74278032d1bdde1235e91508474c080b.gif)
