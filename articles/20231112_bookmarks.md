@@ -30,9 +30,9 @@ _記事のデータ構造_
 # ブックマークの登録
 
 筆者はブラウザにFirefoxを使っているため、Firefoxから簡単にブックマークを登録できるようにしました。
-[Tridactyl](https://github.com/tridactyl/tridactyl)はFirefox内でVim操作ができるようなるプラグインですが、さらに特定のキー入力で任意のプログラムを実行できるようにします。
+[Tridactyl](https://github.com/tridactyl/tridactyl)はVim操作や特定のキー入力でプログラムを実行できるようになるFirefoxプラグインです。
 
-今回は`,r`キーの入力で現在閲覧しているサイトをブックマークに登録します。
+今回は`,r`キーの入力で閲覧しているサイトをブックマークに登録します。
 
 tridactylの設定で`,r`入力時に`bookmark.js`を実行するようにします。
 
@@ -42,7 +42,7 @@ command bookmark js -r js/bookmark.js
 bind ,r composite bookmark | fillcmdline_nofocus
 ```
 
-`bookmark.js`を作成します。
+次に、`bookmark.js`を作成します。
 
 サイトのタイトルは`document.title`、URLは`location.href`で取得します。
 Supabaseへのポストは`fetch`関数で行います。
@@ -77,6 +77,9 @@ _`,r`で記事がSupabaseに保存される様子_
 
 `curl`でブックマークを取得し、`peco`で選択UIを作成し、`open`コマンドでブラウザが開くようにします。
 
+取得したブックマーク配列から`jq`コマンドでtitleだけとりだし、`peco`に渡します。
+選択したtitleから対応するurlを探して`open`コマンドに渡します。
+
 ```bash:.zshrc
 function peco-select-bookmark() {
   local bookmarks=$(curl -s 'SUPABASE_URL/rest/v1/articles' -H "apiKey: API_KEY" -H "Content-Type: application/json")
@@ -98,7 +101,7 @@ _ターミナルでブックマーク一覧から記事を選択する様子_
 # おわりに
 
 以上で手軽なブックマークツールが完成しました。
-データベースに保存できたことで端末間の同期もできます。また、TUIからの操作なので普段vim生活をしている筆者はとても使いやすく感じています。
+データベースに保存できたことで端末間の同期ができます。また、TUIからの操作なので普段vim生活をしている筆者はとても使いやすく感じています。
 
 技術的には、初めてSupabaseを利用しました。
 無料で使える点や簡単にCRUDできる点がとても便利でした。
