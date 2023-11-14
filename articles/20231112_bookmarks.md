@@ -22,7 +22,7 @@ _構成図_
 
 ブックマークのデータ保存には[Supabase](https://supabase.com/)を使います。
 
-Supabseにarticlesテーブルを作成し、記事を登録します。
+Supabaseにarticlesテーブルを作成し、記事を登録します。
 記事のデータ構造は、以下のようにしました。
 ![記事のデータ構造](https://storage.googleapis.com/zenn-user-upload/fc708c38a250-20231112.png)
 _記事のデータ構造_
