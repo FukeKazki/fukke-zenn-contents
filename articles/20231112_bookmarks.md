@@ -46,6 +46,7 @@ bind ,r composite bookmark | fillcmdline_nofocus
 
 サイトのタイトルは`document.title`、URLは`location.href`で取得します。
 Supabaseへのポストは`fetch`関数で行います。
+`return [${title}](${url})`はプログラム実行後、ブラウザ下部に表示される文字列です。
 
 ```js:js/bookmark.js
 (async function () {
