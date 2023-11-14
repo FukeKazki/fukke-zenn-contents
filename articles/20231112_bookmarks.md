@@ -3,7 +3,7 @@ title: "手軽なブックマーク管理ツールを作る"
 emoji: "🔖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["tridactyl", "peco", "Supabase"]
-published: false
+published: true
 publication_name: "chot"
 ---
 
