@@ -14,14 +14,16 @@ publication_name: "chot"
 # ラズパイピコの購入
 
 ラズパイピコはC/C++やMicroPythonでプログラミングできるマイコンボードです。
-ラズパイピコはAliExpressというECサイトで購入しました。
-日本語が怪しいですが、問題なく届きました。
+AliExpressというECサイトで購入しました。
+日本語表記が怪しいですが、問題なく届きました。
 ![](https://storage.googleapis.com/zenn-user-upload/6ba580549401-20231212.png)
 
 # ラズパイピコとPCの接続
 
 PCとラズパイピコをUSBケーブルで接続します。
 [thonny](https://thonny.org/)というIDEを使ってプログラムを書き込みます。
+
+接続確認のために、LEDを点灯させるプログラムを書き込みます。
 
 ```python:LED点灯プログラム
 import machine
@@ -33,7 +35,8 @@ while (True):
     led.on()
 ```
 
-![LEDが点灯したラズパイ](https://storage.googleapis.com/zenn-user-upload/1503025e901d-20231113.jpeg)
+![](https://storage.googleapis.com/zenn-user-upload/1503025e901d-20231113.jpeg)
+_LEDが点灯したラズパイ_
 
 点灯が確認できたので、次はピンヘッダをはんだ付けします。
 
@@ -45,6 +48,7 @@ GPIOにピンヘッダをはんだ付けして接続しやすくします。
 Amazonで安いはんだごてセットを購入しました。
 
 ![](https://storage.googleapis.com/zenn-user-upload/1837a77eaa85-20231212.png)
+_安かったはんだごてセット_
 
 ピンヘッダをブレッドボードに固定して、その上にラズパイピコを乗せてはんだ付けします。
 
@@ -66,6 +70,7 @@ Amazonで安いはんだごてセットを購入しました。
 
 今回は秋葉原のお店で購入しました。電源とケーブルも一緒に。
 ![](https://storage.googleapis.com/zenn-user-upload/073a68efd05c-20231212.png)
+_LEDMatrixPanelと電源回り_
 
 # LEDMatrixPanelの接続
 
@@ -73,6 +78,7 @@ Amazonで安いはんだごてセットを購入しました。
 詳細はデータシートを確認してください。
 
 ![ラズパイとマトリクスLEDの接続](https://storage.googleapis.com/zenn-user-upload/b6667b2a32b3-20231113.jpg)
+_ラズパイとマトリクスLEDの接続_
 
 接続できたら、プログラムを書き込んで動作確認します。
 
@@ -125,18 +131,15 @@ R0 G0 B0は上の半分、R1 G1 B1は下の半分のLEDを制御します。
 A B Cは行を選択するためのピンです。
 `(A, B, C) = (0, 0, 0)`のとき、1行目が選択されます。
 `(R0, G0, B0, R1, G1, B1) = (1, 1, 0, 0, 1, 0)`のとき、上半分は赤、下半分は緑になります。
-CLKを変化させるて次のピクセルに進みます。
+CLKを変化させて次のピクセルに進みます。
 これを繰り返すことで画面全体を表示します。
-
-詳しくはこの記事が参考になります。
-https://qiita.com/Yukiya_Ishioka/items/7a7325421e0bf545dade
-
-無事にLEDMatrixPanelが点灯しました。
-リフレッシュレートの関係で撮影するのは難しいですが、ちゃんと動作しています。
 
 | 表面                                                                           | 接続部分                                                                       |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | ![](https://storage.googleapis.com/zenn-user-upload/6954cd68d1f0-20231212.png) | ![](https://storage.googleapis.com/zenn-user-upload/b7a554b1597b-20231212.png) |
+
+そして無事にLEDMatrixPanelが点灯しました。🎄🎄
+リフレッシュレートの関係で撮影するのは難しいですが、ちゃんと動作しています。
 
 # おわりに
 
