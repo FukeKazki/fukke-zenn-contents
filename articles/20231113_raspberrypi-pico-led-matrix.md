@@ -7,6 +7,7 @@ published: false
 publication_name: "chot"
 ---
 
+https://adventar.org/calendars/8910
 ちょっと株式会社アドベントカレンダー 12月18日の記事です。
 
 この記事ではRaspberry Pi Pico(以下ラズパイピコと呼ぶ)を使ってLEDMatrixPanelを制御します。
