@@ -3,9 +3,11 @@ title: "Raspberry Pi Picoでつくる電光掲示板"
 emoji: "🪅"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [raspberrypi]
-published: false
+published: true
 publication_name: "chot"
 ---
+
+![](https://storage.googleapis.com/zenn-user-upload/ac1c95b7a50d-20231218.png)
 
 https://adventar.org/calendars/8910
 ちょっと株式会社アドベントカレンダー 12月18日の記事です。
