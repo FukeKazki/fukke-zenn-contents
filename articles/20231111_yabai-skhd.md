@@ -31,6 +31,18 @@ yabai -m config                                 \
     normal_window_opacity        0.85           \
 ```
 
+# 特定のスペースでアプリが起動するように
+
+```bash:yabairc
+yabai -m rule --add app="Arc" space=1
+
+yabai -m rule --add app="Alacritty" space=2
+yabai -m rule --add app="Google Chrome Canary" space=2
+
+yabai -m rule --add app="Slack" space=3
+```
+
+
 # skhdのインストール
 
 # skhdでyabaiを操作
@@ -77,5 +89,5 @@ MacのFinderの用なアプリでは、yabaiに管理されたくありません
 以下の設定で可能です。
 
 ```bash:yabairc
-yabai -m rule --add app="^(Finder)$" manage=off
+yabai -m rule --add app="^(Finder|Raycast|Fig|システム設定|Simulator|LINE|Cyberduck|Spotify|カレンダー)$" manage=off
 ```
