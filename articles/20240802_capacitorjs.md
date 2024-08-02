@@ -1,5 +1,5 @@
 ---
-title: "CapacitorJSでアプリ開発"
+title: "CapacitorJSで始めるアプリ開発"
 emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["react", "capacitor"]
