@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	  "preview": "zenn preview",
+    "preview": "zenn preview",
     "textlint": "textlint \"./{articles,books}/*.md\"",
     "textlint:fix": "textlint --fix \"./{articles,books}/*.md\""
   },
