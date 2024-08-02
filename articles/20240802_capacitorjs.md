@@ -54,7 +54,7 @@ https://capacitorjs.com/docs/getting-started#where-to-go-next
 ```
 
 CapacitorJSの初期設定が完了すると`capacitor.config.ts`ファイルが作成されます。
-次に、iOSアプリを作成しエミュレータで動かします。
+次に、iOSアプリを作成しシミュレーターで動かします。
 
 ### iOSアプリの作成
 
@@ -238,4 +238,4 @@ Share.share({
 ## おわりに
 CapacitorJSの導入とTipsの紹介をしました。
 Web技術でアプリ開発をしたい方や、既存のWebサービスをアプリ化するのにおすすめのライブラリです。
-ぜひ試してみてください。
+ぜひ試してみてください 💫
