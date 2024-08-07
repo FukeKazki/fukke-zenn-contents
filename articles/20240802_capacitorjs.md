@@ -3,7 +3,7 @@ title: "CapacitorJSで始めるアプリ開発"
 emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["react", "capacitor"]
-published: false
+published: true
 publication_name: "chot"
 ---
 
