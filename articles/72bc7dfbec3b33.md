@@ -8,7 +8,6 @@ topics:
   - "astronvim"
 published: true
 published_at: "2023-06-06 15:34"
-publication_name: ""
 ---
 
 # はじめに
