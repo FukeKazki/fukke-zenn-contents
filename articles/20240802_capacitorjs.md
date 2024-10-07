@@ -4,7 +4,7 @@ emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["react", "capacitor"]
 published: true
-publication_name: "chot"
+publication_name: ""
 ---
 
 ## はじめに
