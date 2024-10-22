@@ -17,7 +17,7 @@ publication_name: "yoshinani_dev"
 
 ## この記事で解説する内容
 - ClockiflyとDiscordの連携
-- hono * Cloud Run を使ったサーバー構築
+- hono * Cloud Runを使ったサーバー構築
 
 ## Clockify webhook
 ClockifyにはWebhookを送る仕組みがあります。

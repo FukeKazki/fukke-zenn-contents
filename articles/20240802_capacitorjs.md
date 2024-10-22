@@ -65,7 +65,7 @@ pnpm add  @capacitor/ios
 pnpm exec cap add ios
 ```
 
-アプリに組み込むためにReactアプリをビルドします。
+アプリへ組み込むためにReactアプリをビルドします。
 
 ```bash
 pnpm run build
@@ -135,7 +135,7 @@ https://zenn.dev/chot/articles/b7f9feb2c39bc1
 ### ローカル開発方法
 Capacitorを使った開発ではWeb技術による開発のためブラウザ上で確認しながら進めることができます。
 アプリでの動作確認をしたいときは`capacitor.config.ts`を書き変えて実現します。
-これでシミュレーターで開発サーバーを見てホットリロードの効く環境での開発ができます。
+シミュレーター上で開発サーバーを見てホットリロードの効く環境での開発ができます。
 
 ```bash
 vite # localhost:5173で起動
@@ -238,4 +238,4 @@ Share.share({
 ## おわりに
 CapacitorJSの導入とTipsの紹介をしました。
 Web技術でアプリ開発をしたい方や、既存のWebサービスをアプリ化するのにおすすめのライブラリです。
-ぜひ試してみてください 💫
+ぜひ試してみてください 💫。
