@@ -1,2 +1,8 @@
 [tools]
 node = "22.11.0"
+
+[tasks.preview]
+run = 'npm run preview'
+
+[tasks.lint]
+run = 'npm run textlint'
