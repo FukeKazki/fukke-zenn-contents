@@ -9,6 +9,8 @@ publication_name: "yoshinani_dev"
 
 ## はじめに
 
+> この記事は[「ハックツ&YOSHINANI合同アドベントカレンダー Advent Calendar 2024」](https://adventar.org/calendars/10992)の9日目です。
+
 フロントエンドの開発で弊社が取り組んでいるGitHub Actionsの活用方法を紹介します。
 使用技術は`NextJS, Turborepo, pnpm`です。
 
