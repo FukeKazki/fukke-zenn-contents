@@ -1,0 +1,6 @@
+[tools]
+node = "22"
+[tasks.preview]
+run = "npx zenn-cli preview"
+[tasks.create]
+run = "npx zenn-cli new:article --slug $(date +'%Y%m%d')_hoge"

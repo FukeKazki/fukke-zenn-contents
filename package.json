@@ -3,16 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "preview": "zenn preview",
     "textlint": "textlint \"./{articles,books}/*.md\"",
     "textlint:fix": "textlint --fix \"./{articles,books}/*.md\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "zenn-cli": "^0.1.158"
-  },
   "devDependencies": {
     "textlint": "^14.3.0",
     "textlint-filter-rule-comments": "^1.2.2",
