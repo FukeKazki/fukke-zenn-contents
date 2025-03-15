@@ -1,3 +1,7 @@
 {
-    "textlint.autoFixOnSave": true
+    "textlint.autoFixOnSave": true,
+    "cSpell.words": [
+        "textlint",
+        "zenn"
+    ]
 }
