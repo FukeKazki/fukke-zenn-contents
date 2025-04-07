@@ -1,7 +1,9 @@
 {
+    "extensions.ignoreRecommendations": false,
     "textlint.autoFixOnSave": true,
     "cSpell.words": [
         "textlint",
+        "yoshinani",
         "zenn"
     ]
 }
