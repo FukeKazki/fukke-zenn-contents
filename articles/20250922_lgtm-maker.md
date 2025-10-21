@@ -3,7 +3,7 @@ title: "社内用のLGTM Makerを作った"
 emoji: "🤖"
 type: "tech"
 topics: ["vercel"]
-published: false
+published: true
 publication_name: "yoshinani_dev"
 ---
 
