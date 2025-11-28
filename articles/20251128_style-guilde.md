@@ -17,7 +17,7 @@ https://www.npmjs.com/package/@yoshinani/style-guide
 
 ## 背景：vercel/style-guide のアーカイブ
 
-これまで弊社では、Next.jsを中心とした開発において Vercel社が公開していた vercel/style-guide をベース設定として利用していました。多くのプロジェクトで標準的に使われていた優れた設定集でしたが、同リポジトリがアーカイブ（メンテナンス終了）となりました。
+これまで弊社では、Next.jsを中心とした開発において Vercel社が公開していた vercel/style-guide をベース設定として利用していました。優れた設定集でしたが、同リポジトリがアーカイブ（メンテナンス終了）となりました。
 
 https://github.com/vercel/style-guide
 
@@ -26,7 +26,7 @@ https://github.com/vercel/style-guide
 ## 課題：AIコーディング支援とコード品質の維持
 
 独自パッケージ化を進めた背景には、開発フローの変化もあります。
-GitHub Copilot等のAIコーディング支援ツールが普及し、コード生成のコストは大幅に下がりました。一方で、AIが生成するコードのスタイルや品質をどのように統制するかという課題が生じています。
+Claude Code等のAIコーディング支援ツールが普及し、コード生成のコストは大幅に下がりました。一方で、AIが生成するコードのスタイルや品質をどのように統制するかという課題が生じています。
 
 プロンプトで「キャメルケースを使用する」「インポート順序を整理する」といった指示を毎回与えるのは効率的ではありません。
 
@@ -50,7 +50,8 @@ GitHub Copilot等のAIコーディング支援ツールが普及し、コード�
 
 #### 1. ESLint Rules
 
-基本的には next/core-web-vitals や typescript-eslint の推奨設定をベースにしつつ、可読性と保守性を高めるためのルールを追加しています。
+typescript-eslint の推奨設定をベースにしつつ、可読性と保守性を高めるためのルールを追加しています。
+ここでのルールの選定については、また別の記事で詳しく解説したいと思います。
 
 ```js:base.mjs
 export default tseslint.config(
