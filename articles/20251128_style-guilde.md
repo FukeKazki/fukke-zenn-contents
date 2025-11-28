@@ -3,6 +3,7 @@ title: "AIコーディング時代のLinter/Formatter運用と独自スタイル
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["javascript", "typescript"]
+publication_name: "yoshinani_dev"
 published: false
 ---
 
