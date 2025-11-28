@@ -6,6 +6,8 @@ topics: ["javascript", "typescript"]
 published: false
 ---
 
+> この記事は「YOSHINANI&ねこねこパラダイス Advent Calendar 2025」の1日目です。https://adventar.org/calendars/12110
+
 株式会社YOSHINANIのふっけです。
 今回は、社内のコード品質を担保するために作成した style-guide パッケージの運用と、その背景にある技術的な意思決定について共有します。
 
