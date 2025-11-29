@@ -10,18 +10,14 @@ published: false
 > この記事は「YOSHINANI&ねこねこパラダイス Advent Calendar 2025」の1日目です。https://adventar.org/calendars/12110
 
 株式会社YOSHINANIのふっけです。
-今回は、社内のコード品質を担保するために作成した style-guide パッケージの運用と、その背景にある技術的な意思決定について共有します。
+今回は、社内のコード品質を担保するために作成した **スタイルガイドパッケージ** を紹介します。
+スタイルガイドとは、組織共通で使える Linter や Formatter の設定をまとめたものです。
 
 https://github.com/yoshinani-dev/style-guide
 https://www.npmjs.com/package/@yoshinani/style-guide
 
-## 背景：vercel/style-guide のアーカイブ
-
-これまで弊社では、Next.jsを中心とした開発において Vercel社が公開していた vercel/style-guide をベース設定として利用していました。優れた設定集でしたが、同リポジトリがアーカイブ（メンテナンス終了）となりました。
-
-https://github.com/vercel/style-guide
-
-これを機に、外部依存を減らし、弊社の技術選定やコーディングガイドラインに完全に準拠した独自の設定パッケージ @yoshinani/style-guide を開発・公開することにしました。
+スタイルガイドがあることで、組織でコードの書き方を統一でき、コードの品質が安定します。  
+これは AI コーディングにも適用でき、AI が生成するコードの品質を機械的に担保できるようになります。
 
 ## 課題：AIコーディング支援とコード品質の維持
 
@@ -33,6 +29,15 @@ Claude Code等のAIコーディング支援ツールが普及し、コード生�
 「AIにはコード生成に専念させ、スタイルや構文上の制約はLinter/Formatterで機械的に矯正する」
 
 この役割分担を明確にするため、プロジェクトごとの設定差異を無くし、強固なルールセットを共通化する必要がありました。
+
+## vercel/style-guide のアーカイブ
+
+これまで弊社では、Next.jsを中心とした開発において Vercel社が公開していた vercel/style-guide をベース設定として利用していました。優れた設定集でしたが、同リポジトリがアーカイブ（メンテナンス終了）となりました。
+
+https://github.com/vercel/style-guide
+
+これを機に、外部依存を減らし、弊社の技術選定やコーディングガイドラインに完全に準拠した独自の設定パッケージ @yoshinani/style-guide を開発・公開することにしました。
+
 
 ## 解決策：YOSHINANI スタイルガイドの設計
 
@@ -139,6 +144,59 @@ mjsx
 ...
 ```
 
+#### 4. Prettier
+  
+フォーマットルール（インデント幅やセミコロン有無など）を共通化し、どのリポジトリでも同じ整形結果になるようにしています。  
+
+```js:prettier.config.cjs
+// @ts-check
+
+/**
+ * @see https://prettier.io/docs/configuration
+ * @type {import("prettier").Config}
+ */
+const config = {
+  endOfLine: "lf",
+  tabWidth: 2,
+  printWidth: 80,
+  useTabs: false,
+  singleQuote: false,
+  semi: false,
+  trailingComma: "all",
+}
+
+module.exports = config
+```
+
+#### 5. TypeScript
+  
+各プロジェクトはこの `base.json` を継承して、型安全性な開発ができるようにしています。
+
+```json:base.json
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": false,
+    "isolatedModules": true,
+    "lib": ["es2022", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
+    "moduleDetection": "force",
+    "moduleResolution": "NodeNext",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2022"
+  }
+}
+```
+
 ### 利用方法
 
 #### 1. インストール
@@ -193,6 +251,12 @@ Biomeを利用する場合の設定も同梱しています。biome.jsonc を作
 本パッケージのルールの基盤となっている、弊社の技術選定プロセスや合意形成の仕組みについては、以下の記事で詳しく解説しています。なぜこのルールになったのか、その「Why」に興味がある方はぜひご覧ください。
 
 https://zenn.dev/yoshinani_dev/articles/2de972e13d716d
+
+## 組織の変化
+
+スタイルガイドを社内の複数プロジェクトへ導入しました。  
+プロダクトごとに技術スタックは違っていても、同じルールでコードを書けるようになりました。
+AI が書いたコードも、スタイルガイドに沿って Lint や Format を自動修正させることで、一定以上の品質を満たした状態からレビューを始められるようになりました。
 
 ## まとめと今後の展望
 
