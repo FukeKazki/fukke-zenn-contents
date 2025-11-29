@@ -39,7 +39,7 @@ https://github.com/vercel/style-guide
 これを機に、外部依存を減らし、弊社の技術選定やコーディングガイドラインに完全に準拠した独自の設定パッケージ @yoshinani/style-guide を開発・公開することにしました。
 
 
-## 解決策：YOSHINANI スタイルガイドの設計
+## YOSHINANI スタイルガイドの設計
 
 今回作成した style-guide は、以下のツール設定を含んでいます。
 
