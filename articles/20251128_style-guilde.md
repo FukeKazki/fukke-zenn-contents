@@ -4,7 +4,7 @@ emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["javascript", "typescript"]
 publication_name: "yoshinani_dev"
-published: false
+published: true
 ---
 
 > この記事は「YOSHINANI&ねこねこパラダイス Advent Calendar 2025」の1日目です。https://adventar.org/calendars/12110
