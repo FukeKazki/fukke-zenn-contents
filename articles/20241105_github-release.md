@@ -3,7 +3,7 @@ title: "受託案件におけるリリース管理方法"
 emoji: "❤️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["githubactions"]
-published: true
+published: false
 publication_name: "yoshinani_dev"
 ---
 
