@@ -3,7 +3,7 @@ title: "Vercelの機能を活用してブランチ運用をシンプルなまま
 emoji: "🤖"
 type: "tech"
 topics: ["vercel"]
-published: false
+published: true
 publication_name: "yoshinani_dev"
 ---
 
@@ -15,16 +15,33 @@ publication_name: "yoshinani_dev"
 
 この記事を読むことで、main と feature ブランチのみのシンプルな運用のまま、「いつ本番に出すか」をVercel上でコントロールできるようになります。
 
-## 前提
-下記の環境があることを想定します。
+## 目指す運用フロー
+下記の環境を用意します。
 
-- Production
-- Staging
-- Development
+- Production 本番環境
+- Staging 本番環境の事前確認用
+- Development 開発環境
+- Preview PRごとの開発環境
 
-## Vercelで「リリース環境」を管理する
-### デフォルトの構成
-Vercelのデフォルトでは環境定義は以下のようになっています。
+日々の流れは以下のようにします。
+
+1. featureブランチで実装し、PRの作成、Preview環境で動作確認
+2. コードレビューの承認後、mainブランチにマージ
+3. Staging環境でリリース前の確認
+4. 問題なければ Promote to Productionで本番環境にデプロイ
+5. リリース後に、問題があれば過去のProductionデプロイにロールバックする
+
+![Production、Preview、Stagingのデプロイが作成されている](https://storage.googleapis.com/zenn-user-upload/1c93ed3ec859-20251207.png)
+_Production、Preview、Stagingのデプロイが作成されている_
+
+![Promoteボタンで任意のデプロイを公開できる](https://storage.googleapis.com/zenn-user-upload/f3939f40c6a8-20251207.png)
+_Promoteボタンで任意のデプロイを公開できる_
+
+
+## Vercelの設定
+上記の運用フローを達成するために、Vercelの設定をしていきます。
+
+デフォルトの環境定義は以下のようになっています。
 
 | 環境名 | デプロイ方法 |
 | --- | --- |
@@ -39,45 +56,17 @@ Vercelのデフォルトでは環境定義は以下のようになっていま�
 | 編集 | Production | Auto-assign Custom Production Domainsを外す |
 | 追加 | Staging | main branchのトラッキング |
 
-
-## 目指す運用
-やりたいことは次の2点です。
-
-- mainにマージしても自動で本番公開しない（デプロイは作るが本番ドメインに紐づけない）
-- 確認できたデプロイだけを、Vercelの操作で本番に昇格（Promote）する
-
 まず、Staging環境を新たに作成し、main branchをトラッキングするようにします。
-これによってmainにマージされた最新のコードがStaging環境に反映されるようになります。
 
 ![EnvironmentにStagingを追加した様子](https://storage.googleapis.com/zenn-user-upload/10581107d755-20251207.png)
 _EnvironmentにStagingを追加した_
+
+これによってmainにマージされた最新のコードがStaging環境に反映されるようになります。
 
 次にProduction環境のAuto-assign Custom Production DomainsをOFFにします。
 ![ProductionのAuto-assign Custom Production DomainsをOFFにした](https://storage.googleapis.com/zenn-user-upload/5fd6125cf35c-20251207.png)
 _ProductionのAuto-assign Custom Production DomainsをOFFした_
 
-これによって、mainにマージ時にデプロイは作成されますが、本番ドメインにアタッチされることはありません。
-
-この状態でStaging環境などで十分に動作確認を行い、問題がないと判断できたタイミングで、Vercel上のPromote to Productionボタンを押します。  
-そうすることで、その時点で選択したデプロイだけを本番URLにアタッチできます。
-
-不具合が発生したときに即座に過去の本番デプロイへ戻すこともできます。
-
-## 運用フロー
-日々の流れはこれで回ります。
-
-1. featureブランチで実装 → PR作成（Previewで動作確認）
-2. レビューOK → mainにマージ
-3. Staging（main tracking）で結合後の確認
-4. 問題なければ Promote to Production（この操作が“リリース”）
-5. もし問題があれば、過去のProductionデプロイに戻す（ロールバック）
-
-これによってブランチの運用は main と feature のみにして、デプロイ環境は Production / Staging / Development / Preview を準備できます。
-![Production、Preview、Stagingのデプロイが作成されている](https://storage.googleapis.com/zenn-user-upload/1c93ed3ec859-20251207.png)
-_Production、Preview、Stagingのデプロイが作成されている_
-
-![Promoteボタンで任意のデプロイを公開できる](https://storage.googleapis.com/zenn-user-upload/f3939f40c6a8-20251207.png)
-_Promoteボタンで任意のデプロイを公開できる_
 
 
 ## 機能追加にどう対応するか
@@ -111,3 +100,4 @@ export const getFeatureAFlag = () => getFlag("isFeatureAEnable")
 
 これらを組み合わせることで、ブランチ運用はシンプルにしたまま、本番リリースの安全性と柔軟性を高めることができます。
 
+この記事がVercelでの運用を採用している方々の参考になれば幸いです。
