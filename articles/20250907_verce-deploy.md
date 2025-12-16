@@ -1,5 +1,5 @@
 ---
-title: "main+featureだけで回すVercel運用：マージとリリースを分離する"
+title: "Vercelの機能を活用してブランチ運用をシンプルなままリリースを管理する方法"
 emoji: "🤖"
 type: "tech"
 topics: ["vercel"]
@@ -11,7 +11,7 @@ publication_name: "yoshinani_dev"
 > この記事は「YOSHINANI&ねこねこパラダイス Advent Calendar 2025」の8日目です。https://adventar.org/calendars/12110
 
 株式会社YOSHINANIのふっけです。
-今回は、Vercelの機能を活用してブランチ運用をシンプルにする方法を紹介します。
+今回は、Vercelの機能を活用してブランチ運用をシンプルなままリリースを管理する方法を紹介します。
 
 この記事を読むことで、main と feature ブランチのみのシンプルな運用のまま、「いつ本番に出すか」をVercel上でコントロールできるようになります。
 
@@ -36,13 +36,12 @@ Vercelのデフォルトでは環境定義は以下のようになっていま�
 
 | 差分 | 環境名 | デプロイ方法 |
 | --- | --- | --- |
-| edit | Production | Auto-assign Custom Production Domainsを外す |
-| add | Staging | main branchのトラッキング |
+| 編集 | Production | Auto-assign Custom Production Domainsを外す |
+| 追加 | Staging | main branchのトラッキング |
 
-![](https://storage.googleapis.com/zenn-user-upload/10581107d755-20251207.png)
 
 ## 目指す運用
-やりたいことは次の2点だけです。
+やりたいことは次の2点です。
 
 - mainにマージしても自動で本番公開しない（デプロイは作るが本番ドメインに紐づけない）
 - 確認できたデプロイだけを、Vercelの操作で本番に昇格（Promote）する
@@ -50,8 +49,12 @@ Vercelのデフォルトでは環境定義は以下のようになっていま�
 まず、Staging環境を新たに作成し、main branchをトラッキングするようにします。
 これによってmainにマージされた最新のコードがStaging環境に反映されるようになります。
 
-次にProduction環境のAuto-assign Custom Production Domainsを外します。
-![](https://storage.googleapis.com/zenn-user-upload/5fd6125cf35c-20251207.png)
+![EnvironmentにStagingを追加した様子](https://storage.googleapis.com/zenn-user-upload/10581107d755-20251207.png)
+_EnvironmentにStagingを追加した_
+
+次にProduction環境のAuto-assign Custom Production DomainsをOFFにします。
+![ProductionのAuto-assign Custom Production DomainsをOFFにした](https://storage.googleapis.com/zenn-user-upload/5fd6125cf35c-20251207.png)
+_ProductionのAuto-assign Custom Production DomainsをOFFした_
 
 これによって、mainにマージ時にデプロイは作成されますが、本番ドメインにアタッチされることはありません。
 
@@ -60,7 +63,7 @@ Vercelのデフォルトでは環境定義は以下のようになっていま�
 
 不具合が発生したときに即座に過去の本番デプロイへ戻すこともできます。
 
-## 運用フロー（おすすめ）
+## 運用フロー
 日々の流れはこれで回ります。
 
 1. featureブランチで実装 → PR作成（Previewで動作確認）
@@ -70,11 +73,14 @@ Vercelのデフォルトでは環境定義は以下のようになっていま�
 5. もし問題があれば、過去のProductionデプロイに戻す（ロールバック）
 
 これによってブランチの運用は main と feature のみにして、デプロイ環境は Production / Staging / Development / Preview を準備できます。
-![](https://storage.googleapis.com/zenn-user-upload/1c93ed3ec859-20251207.png)
-![](https://storage.googleapis.com/zenn-user-upload/f3939f40c6a8-20251207.png)
+![Production、Preview、Stagingのデプロイが作成されている](https://storage.googleapis.com/zenn-user-upload/1c93ed3ec859-20251207.png)
+_Production、Preview、Stagingのデプロイが作成されている_
+
+![Promoteボタンで任意のデプロイを公開できる](https://storage.googleapis.com/zenn-user-upload/f3939f40c6a8-20251207.png)
+_Promoteボタンで任意のデプロイを公開できる_
 
 
-## 機能追加にどう対応するか（Vercel Edge Config）
+## 機能追加にどう対応するか
 mainブランチにfeatureをマージする戦略のときに、開発中の機能のコードが含まれるのをどう扱うか、という悩みが出てきます。
 
 ここでもVercelの機能を使います。VercelのEdge Config機能を使うとFeature Flag運用が可能です。
