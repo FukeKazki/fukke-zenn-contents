@@ -11,17 +11,17 @@ published: true
 
 株式会社YOSHINANIのふっけです。
 今回は、社内のコード品質を担保するために作成した **スタイルガイドパッケージ** を紹介します。
-スタイルガイドとは、組織共通で使える Linter や Formatter の設定をまとめたものです。
+スタイルガイドとは、組織共通で使えるLinterやFormatterの設定をまとめたものです。
 
 https://github.com/yoshinani-dev/style-guide
 https://www.npmjs.com/package/@yoshinani/style-guide
 
 スタイルガイドがあることで、組織でコードの書き方を統一でき、コードの品質が安定します。  
-これは AI コーディングにも適用可能で、AI が生成するコードの品質を機械的に担保できるようになります。
+これはAIコーディングにも適用可能で、AIが生成するコードの品質を機械的に担保できるようになります。
 
 ## 課題：AIコーディング支援とコード品質の維持
 
-独自パッケージ化を進めた背景の一つに開発フローの変化があります。
+独自パッケージ化を進めた背景の1つに開発フローの変化があります。
 Claude Code等のAIコーディング支援ツールが普及し、コード生成のコストは大幅に下がりました。一方で、AIが生成するコードのスタイルや品質をどのように統制するかという課題が生じています。
 
 プロンプトで「キャメルケースを使用する」「インポート順序を整理する」といった指示を毎回与えるのは効率的ではありません。
@@ -32,7 +32,7 @@ Claude Code等のAIコーディング支援ツールが普及し、コード生�
 
 ## vercel/style-guide のアーカイブ
 
-これまで弊社では、Next.jsを中心とした開発において Vercel社が公開していた vercel/style-guide をベース設定として利用していました。優れた設定集でしたが、同リポジトリがアーカイブ（メンテナンス終了）となりました。
+これまで弊社では、Next.jsを中心とした開発においてVercel社が公開していたvercel/style-guideをベース設定として利用していました。優れた設定集でしたが、同リポジトリがアーカイブ（メンテナンス終了）となりました。
 
 https://github.com/vercel/style-guide
 
@@ -41,11 +41,11 @@ https://github.com/vercel/style-guide
 
 ## YOSHINANI スタイルガイドの設計
 
-今回作成した style-guide は、以下のツール設定を含んでいます。
+今回作成したstyle-guideは、以下のツール設定を含んでいます。
 
 - **Prettier / Biome** フォーマッター（選択式）
 - **ESLint** リンター
-- **TypeScript** tsconfig のベース設定
+- **TypeScript** tsconfigのベース設定
 - **commitlint** コミットメッセージの規約統一
 - **CSpell** スペルチェック
 
@@ -55,7 +55,7 @@ https://github.com/vercel/style-guide
 
 #### 1. ESLint Rules
 
-typescript-eslint の推奨設定をベースにしつつ、可読性と保守性を高めるためのルールを追加しています。
+typescript-eslintの推奨設定をベースにしつつ、可読性と保守性を高めるためのルールを追加しています。
 ここでのルールの選定については、また別の記事で詳しく解説したいと思います。
 
 ```js:base.mjs
@@ -101,8 +101,8 @@ export default tseslint.config(
 
 #### 2. Commitlint Rules
 
-コミットメッセージのフォーマットには Conventional Commits を採用しています。
-feat, fix などのプレフィックスを強制することで、将来的なリリースノートの自動生成や、変更内容の粒度を揃える狙いがあります。
+コミットメッセージのフォーマットにはConventional Commitsを採用しています。
+feat, fixなどのプレフィックスを強制することで、将来的なリリースノートの自動生成や、変更内容の粒度を揃える狙いがあります。
 
 ```js:commitlint.config.mjs
 export default {
@@ -128,7 +128,7 @@ export default {
 #### 3. CSpell (Spell Checker)
 
 変数名やコメントのタイポは、検索性の低下や誤解を招く原因になります。
-cspell を導入し、一般的な英単語に加えて、プロジェクト固有の技術用語を辞書登録しています。
+cspellを導入し、一般的な英単語に加えて、プロジェクト固有の技術用語を辞書登録しています。
 
 これにより、ケアレスミスをCI等の早い段階で検知し、コードレビューで「スペル間違ってますよ」と指摘する時間をゼロにしています。
 
@@ -209,7 +209,7 @@ npm i --save-dev @yoshinani/style-guide
 
 #### 2. ESLint設定
 
-フレームワークや用途に合わせて、最適な設定を extends して利用します。Next.jsプロジェクトであれば以下のように記述します。
+フレームワークや用途に合わせて、最適な設定をextendsして利用します。Next.jsプロジェクトであれば以下のように記述します。
 
 ```js:eslint.config.mjs
 import next from "@yoshinani/style-guide/eslint/next"
@@ -222,10 +222,10 @@ export default eslintConfig
 
 #### 3. Prettier と Biome の使い分け
 
-本スタイルガイドの特徴として、標準的な Prettier に加え、高速なフォーマッター・リンターである Biome にも対応しています。プロジェクトの要件に応じて選択可能です。
+本スタイルガイドの特徴として、標準的なPrettierに加え、高速なフォーマッター・リンターであるBiomeにも対応しています。プロジェクトの要件に応じて選択可能です。
 
 Prettierを利用する場合:
-package.json に以下を追加するだけで適用されます。
+package.jsonに以下を追加するだけで適用されます。
 
 ```json:package.json
 {
@@ -234,7 +234,7 @@ package.json に以下を追加するだけで適用されます。
 ```
 
 Biomeを利用する場合:
-Biomeを利用する場合の設定も同梱しています。biome.jsonc を作成し、以下のように継承します。
+Biomeを利用する場合の設定も同梱しています。biome.jsoncを作成し、以下のように継承します。
 
 ```json:biome.jsonc
 {
@@ -256,7 +256,7 @@ https://zenn.dev/yoshinani_dev/articles/2de972e13d716d
 
 スタイルガイドを社内の複数プロジェクトへ導入しました。  
 プロダクトごとに技術スタックは違っていても、同じルールでコードを書けるようになりました。
-AI が書いたコードも、スタイルガイドに沿って Lint や Format を自動修正させることで、一定以上の品質を満たした状態からレビューを始められるようになりました。
+AIが書いたコードも、スタイルガイドに沿ってLintやFormatを自動修正させることで、一定以上の品質を満たした状態からレビューを始められるようになりました。
 
 ## まとめと今後の展望
 
@@ -266,7 +266,7 @@ AIによるコード生成が前提となる時代において、静的解析ツ
 
 - **CIの構築**: GitHub Actions等でプルリクエスト時に自動チェックを行う
 - **Git Hooks**: Huskyやlint-stagedを使い、コミット前に不適合なコードを弾く
-- **Coding Agentへの指示**: `.cursorrules`や Copilot Custom Instructions にスタイルガイドの情報を渡し、AIにあらかじめルールを遵守させる
+- **Coding Agentへの指示**: `.cursorrules`やCopilot Custom Instructionsにスタイルガイドの情報を渡し、AIにあらかじめルールを遵守させる
 
 これらを組み合わせることで、人間もAIも迷わずに、かつ高品質なコードを書き続けられる環境が整います。
 これらの具体的な設定やCoding Agentとの連携ノウハウについては、また別の記事で詳しく解説したいと思います。

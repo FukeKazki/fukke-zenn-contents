@@ -13,14 +13,14 @@ publication_name: "yoshinani_dev"
 株式会社YOSHINANIのふっけです。
 今回は、Vercelの機能を活用してブランチ運用をシンプルなままリリースを管理する方法を紹介します。
 
-この記事を読むことで、main と feature ブランチのみのシンプルな運用のまま、「いつ本番に出すか」をVercel上でコントロールできるようになります。
+この記事を読むことで、mainとfeatureブランチのみのシンプルな運用のまま、「いつ本番に出すか」をVercel上でコントロールできるようになります。
 
 ## 目指す運用フロー
 下記の環境を用意します。
 
-- Production 本番環境
-- Staging 本番環境の事前確認用
-- Development 開発環境
+- Production本番環境
+- Staging本番環境の事前確認用
+- Development開発環境
 - Preview PRごとの開発環境
 
 日々の流れは以下のようにします。
@@ -28,7 +28,7 @@ publication_name: "yoshinani_dev"
 1. featureブランチで実装し、PRの作成、Preview環境で動作確認
 2. コードレビューの承認後、mainブランチにマージ
 3. Staging環境でリリース前の確認
-4. 問題なければ Promote to Productionで本番環境にデプロイ
+4. 問題なければPromote to Productionで本番環境にデプロイ
 5. リリース後に、問題があれば過去のProductionデプロイにロールバックする
 
 ![Production、Preview、Stagingのデプロイが作成されている](https://storage.googleapis.com/zenn-user-upload/1c93ed3ec859-20251207.png)
@@ -92,7 +92,7 @@ export const getFeatureAFlag = () => getFlag("isFeatureAEnable")
 
 ## まとめ
 
-この記事では、ブランチ構成を増やすのではなく、Vercelの機能だけで 「マージ」と「リリース」を分離して運用する方法を紹介しました。
+この記事では、ブランチ構成を増やすのではなく、Vercelの機能だけで「マージ」と「リリース」を分離して運用する方法を紹介しました。
 
 - mainをトラッキングするStaging環境を用意する
 - ProductionのAuto-assign Custom Production Domainsを外し、Promote to Productionで本番に出すデプロイを選ぶ
