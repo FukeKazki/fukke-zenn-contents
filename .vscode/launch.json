@@ -24,7 +24,7 @@
             "name": "Start Server",
             "request": "launch",
             "type": "node-terminal",
-            "command": "npm run preview"
+            "command": "nix develop -c zenn preview"
         }
     ]
 }
