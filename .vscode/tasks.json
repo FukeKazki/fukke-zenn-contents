@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "textlint:fix (nix)",
+      "type": "shell",
+      "command": "nix develop -c bash -lc \"textlint --fix ./{articles,books}/*.md; textlint ./{articles,books}/*.md\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "zenn: preview (nix)",
+      "type": "shell",
+      "command": "nix develop -c zenn preview",
+      "problemMatcher": [],
+      "isBackground": true,
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}
+
