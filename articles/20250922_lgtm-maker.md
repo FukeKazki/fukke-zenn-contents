@@ -37,7 +37,8 @@ LGTMの他にも「Do Not Merge」やカスタムテキストの挿入、文字�
 ### LGTM 画像の生成
 
 @vercel/ogを使って画像と「LGTM」の合成をしました。
-@vercel/ogはVercelが開発したOG（Open Graph）画像生成ライブラリで、React JSXを使って動的に画像を生成できます。HTMLとCSSライクな記法で画像レイアウトを定義でき、フォントやスタイルのカスタマイズも可能です。Edge Runtimeで動作するため高速で、SNSシェア用画像やサムネイル生成に最適です。
+@vercel/ogはVercelが開発したOG（Open Graph）画像生成ライブラリで、React JSXを使って動的に画像を生成できます。
+HTMLとCSSライクな記法で画像レイアウトを定義でき、フォントやスタイルのカスタマイズも可能です。
 
 ```tsx:@vercel/ogのサンプルコード
 const image = new ImageResponse(
@@ -81,9 +82,9 @@ const image = new ImageResponse(
 ```
 
 ### 画像の圧縮
-大きい画像をそのままVercel Blobにアップロードすると課金が発生するため、
-`browser-image-compression`を利用して、フロントエンドで圧縮してからアップロードするようにしました。
-このライブラリで指定のサイズになるまで繰り返し圧縮を行い、ファイルサイズを効率的に削減できます。
+大きい画像をそのままVercel Blobにアップロードすると課金が発生します。
+対策として`browser-image-compression`を利用して、フロントエンドで圧縮してからアップロードするようにしました。
+このライブラリで指定のサイズになるまで繰り返し圧縮し、ファイルサイズを効率的に削減できます。
 
 ```tsx:画像圧縮のサンプルコード
 import imageCompression from "browser-image-compression";

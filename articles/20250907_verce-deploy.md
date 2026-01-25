@@ -61,10 +61,10 @@ _Promoteボタンで任意のデプロイを公開できる_
 ![EnvironmentにStagingを追加した様子](https://storage.googleapis.com/zenn-user-upload/10581107d755-20251207.png)
 _EnvironmentにStagingを追加した_
 
-これによってmainにマージされた最新のコードがStaging環境に反映されるようになります。
+これによってmainへマージされた最新のコードがStaging環境に反映されます。
 
 次にProduction環境のAuto-assign Custom Production DomainsをOFFにします。
-![ProductionのAuto-assign Custom Production DomainsをOFFにした](https://storage.googleapis.com/zenn-user-upload/5fd6125cf35c-20251207.png)
+![](https://storage.googleapis.com/zenn-user-upload/5fd6125cf35c-20251207.png)
 _ProductionのAuto-assign Custom Production DomainsをOFFした_
 
 
