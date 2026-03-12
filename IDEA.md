@@ -1,0 +1,2 @@
+- issueの設計について、type
+- projectのつかいかた
