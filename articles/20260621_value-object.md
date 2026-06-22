@@ -1,5 +1,5 @@
 ---
-title: "値オブジェクトの実装パターン - Backend TypeScript"
+title: "関数型での値オブジェクトの実装パターン - TypeScript Valibot"
 emoji: "🐈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["typescript", "valibot"]
