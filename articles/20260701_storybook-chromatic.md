@@ -3,7 +3,7 @@ title: "ChromaticでStorybookをPRレビューのUI確認基盤にした話"
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["storybook", "chromatic"]
-published: false
+published: true
 publication_name: "yoshinani_dev"
 ---
 
