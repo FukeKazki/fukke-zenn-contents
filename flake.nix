@@ -16,6 +16,11 @@
       let
         pkgs = import nixpkgs { inherit system; };
 
+        zennCliLockFile = builtins.path {
+          path = ./nix/zenn-cli-package-lock.json;
+          name = "zenn-cli-package-lock.json";
+        };
+
         # nixpkgs に無い npm パッケージは flake 側で取得する
         # textlint-disable / textlint-enable のコメント指示を解釈するために必要
         textlintFilterRuleComments = pkgs.stdenvNoCC.mkDerivation {
@@ -41,6 +46,33 @@
           '';
         };
 
+        # nixpkgs は 0.2.10 のため、npm から最新版を取得する
+        zennCli = pkgs.buildNpmPackage rec {
+          pname = "zenn-cli";
+          version = "0.5.2";
+
+          src = pkgs.fetchurl {
+            url = "https://registry.npmjs.org/zenn-cli/-/zenn-cli-0.5.2.tgz";
+            hash = "sha256-NiYeE6iMq9+bklvY4hSwR+D7HROC2mZQcnNK7I8j9RY=";
+          };
+
+          sourceRoot = "package";
+
+          nativeBuildInputs = [ pkgs.jq ];
+
+          postPatch = ''
+            cp ${zennCliLockFile} package-lock.json
+            jq 'del(.devDependencies)' package.json > package.json.tmp
+            mv package.json.tmp package.json
+          '';
+
+          npmDepsHash = "sha256-yNGWP50X42tzG4EXNDaIb7geh8gTOJdBKc3nkjxOUtU=";
+          npmFlags = [ "--omit=dev" ];
+          dontNpmBuild = true;
+
+          meta.mainProgram = "zenn";
+        };
+
         # textlint が preset ルールを見つけられるようにする
         nodePath = pkgs.lib.makeSearchPath "lib/node_modules" [
           pkgs.textlint-rule-preset-ja-spacing
@@ -54,7 +86,7 @@
             nodePackages.textlint
             textlint-rule-preset-ja-spacing
             textlint-rule-preset-ja-technical-writing
-            zenn-cli
+            zennCli
             textlintFilterRuleComments
           ];
 
