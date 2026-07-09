@@ -3,7 +3,7 @@ title: "Vercel Workflowで実装していたら、それはプロセスマネー
 emoji: "🔄"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["vercel", "ddd"]
-published: false
+published: true
 ---
 
 ## はじめに
