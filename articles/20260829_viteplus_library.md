@@ -258,7 +258,7 @@ warn: TypeScript 7.0 does not yet have a stable API and is experimental. Some op
 fukke0906
 ```
 
-公開前に`pnpm publish —-dry-run`でどんな形で公開されるか確認できます。
+公開前に`pnpm publish --dry-run`でどんな形で公開されるか確認できます。
 `@fukke0906/stack@0.1.0`で公開されることがわかりました。
 
 ```bash
