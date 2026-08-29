@@ -9,7 +9,7 @@ published: true
 Vite+では`vp create`コマンドでライブラリのテンプレートを選択できます。
 今回はそれを利用し、実際にnpmにライブラリを公開した手順について紹介します。
 
-### 環境
+## 環境
 
 | ツール名 | バージョン |
 | --- | --- |
@@ -194,6 +194,7 @@ $ vp test
 
 ```
 
+## コードの品質を確認する
 format、lint、type checkは`pnpm check`で確認します。
 
 ```bash
@@ -244,6 +245,8 @@ warn: TypeScript 7.0 does not yet have a stable API and is experimental. Some op
 ```
 
 ## 公開
+
+### npmアカウントを確認する
 `pnpm whoami`でnpmの認証情報を確認します。
 
 ```bash
@@ -258,6 +261,7 @@ warn: TypeScript 7.0 does not yet have a stable API and is experimental. Some op
 fukke0906
 ```
 
+### dry-runで確認する
 公開前に`pnpm publish --dry-run`でどんな形で公開されるか確認できます。
 `@fukke0906/stack@0.1.0`で公開されることがわかりました。
 
@@ -281,6 +285,7 @@ $ vp config
 [WARN] Skip publishing @fukke0906/stack@0.1.0 (dry run)
 ```
 
+### npmに公開する
 最後にGitHubにrepositoryを作成しpush後、`pnpm publish`で公開します。
 
 ![@fukke0906/stack@0.1.0がnpmに公開された様子](https://static.zenn.studio/user-upload/6023328f9841-20260829.png)
@@ -290,3 +295,6 @@ $ vp config
 Vite+の`Library`テンプレートを使ってnpmにパッケージを公開しました。
 Vite+を使うことでライブラリ作成に必要な環境を簡単に手に入れられる点に良さを感じました。
 npmのライブラリ作成時に参考になれば幸いです。
+
+## 参考
+- https://viteplus.dev/
